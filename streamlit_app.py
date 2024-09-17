@@ -12,7 +12,9 @@ with st.form("my_form"):
     households = st.number_input('Households')
     median_income = st.number_input('Median Income')
 
-    if st.button('Prédire'):
+    submitted = st.form_submit_button("Prédire")
+
+    if submitted:
         data = {
             'longitude': longitude,
             'latitude': latitude,
