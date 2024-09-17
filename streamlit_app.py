@@ -40,9 +40,9 @@ with st.form("my_form"):
 
         response = requests.post('https://fb9f-34-70-132-187.ngrok-free.app/predict', json=data)
     
-    if response.status_code == 200:
-        prediction = response.json()['Prédiction']
-        st.success(f'La prédiction est : {prediction}')
-    else:
-        st.error('Erreur lors de la prédiction')
+        if response.status_code == 200:
+            prediction = response.json()['Prédiction']
+            st.success(f'La prédiction est : {prediction}')
+        else:
+            st.error('Erreur lors de la prédiction')
 
