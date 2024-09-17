@@ -13,10 +13,20 @@ with st.form("my_form"):
     population = st.number_input('Population')
     households = st.number_input('Households')
     median_income = st.number_input('Median Income')
+    text_input = st.text_input('Nom Modéle')
+
 
     submitted = st.form_submit_button("Prédire")
 
     if submitted:
+        if text_input:
+        response = requests.post('https://fb9f-34-70-132-187.ngrok-free.app/new_model', json={'text': text_input})
+
+        if response.status_code == 200:
+                st.success('Le nouveau modèle a été chargé')
+            else:
+                st.error('Erreur lors du chargement du modèle')
+        
         data = {
             'longitude': longitude,
             'latitude': latitude,
@@ -28,7 +38,7 @@ with st.form("my_form"):
             'median_income': median_income
         }
 
-    response = requests.post('https://5acd-34-70-132-187.ngrok-free.app/predict', json=data)
+    response = requests.post('https://fb9f-34-70-132-187.ngrok-free.app/predict', json=data)
     
     if response.status_code == 200:
         prediction = response.json()['Prédiction']
