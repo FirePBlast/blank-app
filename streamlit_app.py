@@ -22,7 +22,7 @@ with st.form("my_form"):
         if text_input:
             response = requests.post('https://fb9f-34-70-132-187.ngrok-free.app/new_model', json={'text': text_input})
 
-        if response.status_code == 200:
+            if response.status_code == 200:
                 st.success('Le nouveau modèle a été chargé')
             else:
                 st.error('Erreur lors du chargement du modèle')
