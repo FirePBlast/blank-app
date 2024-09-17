@@ -5,15 +5,15 @@ import requests
 with st.form("my_form"):
     st.title('Formulaire de prédiction')
 
-    longitude = st.number_input('Longitude')
-    latitude = st.number_input('Latitude')
-    housing_median_age = st.number_input('Housing Median Age')
-    total_rooms = st.number_input('Total Rooms')
-    total_bedrooms = st.number_input('Total Bedrooms')
-    population = st.number_input('Population')
-    households = st.number_input('Households')
-    median_income = st.number_input('Median Income')
-    text_input = st.text_input('Nom Modéle')
+    longitude = st.slider('Longitude', min_value=-180.0, max_value=180.0, value=0.0)
+    latitude = st.slider('Latitude', min_value=-90.0, max_value=90.0, value=0.0)
+    housing_median_age = st.slider('Housing Median Age', min_value=0, max_value=100, value=50)
+    total_rooms = st.slider('Total Rooms', min_value=0, max_value=10000, value=5000)
+    total_bedrooms = st.slider('Total Bedrooms', min_value=0, max_value=5000, value=2500)
+    population = st.slider('Population', min_value=0, max_value=10000, value=5000)
+    households = st.slider('Households', min_value=0, max_value=5000, value=2500)
+    median_income = st.slider('Median Income', min_value=0, max_value=5000, value=500)
+    text_input = st.text_input('Nom Modèle')
 
 
     submitted = st.form_submit_button("Prédire")
