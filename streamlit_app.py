@@ -1,4 +1,6 @@
 import streamlit as st
+import requests
+
 
 with st.form("my_form"):
     st.title('Formulaire de prédiction')
