@@ -1,6 +1,16 @@
 import streamlit as st
 import requests
 
+with st.sidebar.form("my_form_sidebar"):
+    text_input = st.text_input('Nom Modèle')
+    submitted = st.form_submit_button("Changer le modèle")
+    if submitted:
+        response = requests.post('https://fb9f-34-70-132-187.ngrok-free.app/new_model', params={name:model_name})
+        if response.status_code == 200:
+            st.success('Le nouveau modèle a été chargé')
+        else:
+             st.error('Erreur lors du chargement du modèle')
+
 
 with st.form("my_form"):
     st.title('Formulaire de prédiction')
@@ -13,19 +23,9 @@ with st.form("my_form"):
     population = st.slider('Population', min_value=0, max_value=10000, value=5000)
     households = st.slider('Households', min_value=0, max_value=5000, value=2500)
     median_income = st.slider('Median Income', min_value=0, max_value=5000, value=500)
-    text_input = st.text_input('Nom Modèle')
-
 
     submitted = st.form_submit_button("Prédire")
-
     if submitted:
-        if text_input:
-            response = requests.post('https://fb9f-34-70-132-187.ngrok-free.app/new_model', json={'text': text_input})
-
-            if response.status_code == 200:
-                st.success('Le nouveau modèle a été chargé')
-            else:
-                st.error('Erreur lors du chargement du modèle')
         
         data = {
             'longitude': longitude,
