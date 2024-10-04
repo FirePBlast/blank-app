@@ -49,7 +49,7 @@ def page2():
 
     with st.form("table_form"):
         selected_table = st.selectbox("Sélectionnez une table", table_names)
-        submit_sql_button = st.button("Afficher les données")
+        submit_sql_button = st.form_submit_button("Afficher les données")
     
         if submit_sql_button:
             if selected_table:
