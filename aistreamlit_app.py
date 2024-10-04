@@ -19,20 +19,21 @@ with st.sidebar:
 
     if submit_button:
         st.session_state['url'] = user_input
-
-if selected_page:
-    page_key = pages[selected_page]
-    
-    # Rediriger vers la page correspondante
-    if page_key == "page1":
-        st.write("Contenu de la page 1")
-        # ... code pour la page 1
-    elif page_key == "page2":
-        st.write("Contenu de la page 2")
-        # ... code pour la page 2
-    elif page_key == "page3":
-        st.write("Contenu de la page 3")
-        # ... code pour la page 3
+        
+    selected_page = st.radio("Sélectionnez une page", list(pages.keys()))
+    if selected_page:
+        page_key = pages[selected_page]
+        
+        # Rediriger vers la page correspondante
+        if page_key == "page1":
+            st.write("Contenu de la page 1")
+            # ... code pour la page 1
+        elif page_key == "page2":
+            st.write("Contenu de la page 2")
+            # ... code pour la page 2
+        elif page_key == "page3":
+            st.write("Contenu de la page 3")
+            # ... code pour la page 3
 
 # Initialize chat history
 if "messages" not in st.session_state:
