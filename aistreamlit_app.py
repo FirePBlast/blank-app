@@ -66,6 +66,9 @@ def page2():
             
                     df = pd.DataFrame(rows, columns=columns)
                     st.dataframe(df)
+                else:
+                    st.write(f"Erreur : {response.status_code}")
+
     
 def page3():
     st.title("Page 3")
