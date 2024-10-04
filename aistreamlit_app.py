@@ -95,7 +95,7 @@ def page2():
                     "conversation_ids": st.session_state['selected_tables']
                 }
                 
-                response_tune = requests.post(request_url, json=data)
+                response_tune = requests.post(request_url, params=data)
                 
                 if response_tune.status_code == 200:
                     st.success("Fine-tuning job submitted successfully!")
