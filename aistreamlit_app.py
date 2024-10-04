@@ -26,6 +26,8 @@ if prompt := st.chat_input("What is up?"):
     response = requests.post(url, json=data)
     if response.status_code == 200:
         response_content = response.json()  # Extrayez le contenu JSON
+    else
+        response_content = "Erreur : " response.status_code 
          
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
