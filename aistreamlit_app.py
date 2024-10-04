@@ -49,6 +49,9 @@ def page1():
         st.session_state.messages.append({"role": "assistant", "content": response_content })
 
 def page2():
+    if 'selected_tables' not in st.session_state:
+        st.session_state['selected_tables'] = ''
+    
     st.title("Lecture de Table")
     table_names = ["model", "metrics", "conversation"]
     request_url = st.session_state['url'] + "/read_table"
@@ -75,13 +78,13 @@ def page2():
 
                     st.data_editor(df)
             
-                    selected_ids = [row['id_conversation'] for row in selected_rows]                           
+                    st.session_state['selected_tables'] = [row['id_conversation'] for row in selected_rows]                           
                 else:
                     st.write(f"Erreur : {response.status_code}")
         if fine_tune_button:
             if selected_ids:
                 request_url = st.session_state['url'] + "/fine_tune"
-                response_tune = requests.post(request_url, json={"conversation_ids": selected_ids})
+                response_tune = requests.post(request_url, json={"conversation_ids": st.session_state['selected_tables']})
                 
                 if response_tune.status_code == 200:
                     st.success("Fine-tuning job submitted successfully!")
