@@ -77,10 +77,9 @@ def page2():
                     df['selected'] = True 
 
                     edited_df = st.data_editor(df)
-                    edited_df
-                    
+                                        
                     for row in edited_df.itertuples():
-                        if getattr(row, '_selected'):
+                        if getattr(row, 'selected'):
                                st.session_state['selected_tables'].append(getattr(row, 'id'))
                     st.write(f'Selected IDs: {selected_ids}')    
                 else:
