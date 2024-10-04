@@ -33,7 +33,7 @@ if prompt := st.chat_input("What is up?"):
     # url = 'https://42b8-34-168-18-253.ngrok-free.app/question'
     
     data={
-        "message" : prompt
+        "prompt" : prompt
     }
     response = requests.post(st.session_state['url'], params=data)
     
