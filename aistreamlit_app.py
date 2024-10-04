@@ -74,11 +74,11 @@ def page2():
                     df['selected'] = True 
 
                     gb = GridOptionsBuilder.from_dataframe(df)
-                    gb.configure_column("selected", headerCheckboxSelection = True, checkboxSelection = True, hide=True) # Hide the column
+                    gb.configure_column("selected", headerCheckboxSelection=True, checkboxSelection=True, hide=True)
                     gridOptions = gb.build()
-                    
-                    gridOptions["rowSelection"] = 'multiple'  # Enable multiple row selection
-                    gridOptions["preSelectedRows"] = [{"id_conversation": row['id_conversation']} for row in df.to_dict('records')]  # Pre-select all rows
+                   
+                    gridOptions["rowSelection"] = 'multiple'
+                    gridOptions["preSelectedRows"] = [{"id_conversation": row['id_conversation']} for row in df.to_dict('records')]
             
                     grid_response = AgGrid(
                         df,
