@@ -53,13 +53,14 @@ def page2():
     
     with st.form("table_form"):
         tb_name = st.selectbox("Sélectionnez une table", table_names)
-        selected_table ={
-            "table_name" = tb_name
-        }
         submit_sql_button = st.form_submit_button("Afficher les données")
-    
+        
+        selected_table = {
+            "table_name" : tb_name
+        }
+            
         if submit_sql_button:
-            if selected_table:
+            if tb_name:
                 response = requests.get(request_url, params=selected_table)
                 if response.status_code == 200:
                     st.write(f"Données de la table '{selected_table}':")
