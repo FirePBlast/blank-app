@@ -8,6 +8,8 @@ if 'url' not in st.session_state:
 
 # Fonctions pour chaque page
 def page1():
+
+    request_url = st.session_state['url'] + "/question"
     
     # Initialize chat history
     if "messages" not in st.session_state:
@@ -30,7 +32,7 @@ def page1():
         data={
             "prompt" : prompt
         }
-        response = requests.get(st.session_state['url'], params=data)
+        response = requests.get(request_url, params=data)
         
         if response.status_code == 200:
             response_content = response.json()  # Extrayez le contenu JSON
@@ -46,14 +48,15 @@ def page1():
 def page2():
     st.title("Lecture de Table")
     table_names = ["model", "metrics", "conversation"]
-
+    request_url = st.session_state['url'] + "/read_table"
+    
     with st.form("table_form"):
         selected_table = st.selectbox("Sélectionnez une table", table_names)
         submit_sql_button = st.form_submit_button("Afficher les données")
     
         if submit_sql_button:
             if selected_table:
-                data = get_table_data(database_path, selected_table)
+                response = requests.get(request_url, params=data)
                 st.write(f"Données de la table '{selected_table}':")
                 st.table(data)
     
