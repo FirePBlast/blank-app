@@ -56,7 +56,7 @@ def page2():
     
         if submit_sql_button:
             if selected_table:
-                response = requests.get(request_url, params=data)
+                response = requests.get(request_url, params=selected_table)
                 st.write(f"Données de la table '{selected_table}':")
                 st.table(data)
     
