@@ -49,9 +49,9 @@ def page2():
 
     with st.form("table_form"):
         selected_table = st.selectbox("Sélectionnez une table", table_names)
-        submit_button = st.button("Afficher les données")
+        submit_sql_button = st.button("Afficher les données")
     
-        if submit_button:
+        if submit_sql_button:
             if selected_table:
                 data = get_table_data(database_path, selected_table)
                 st.write(f"Données de la table '{selected_table}':")
