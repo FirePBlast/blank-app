@@ -12,6 +12,19 @@ pages = {
     "Page 3": "page3",
 }
 
+def page1():
+    st.title("Page 1")
+    # ... code pour la page 1
+
+def page2():
+      st.title("Formulaire de la page 2")
+      email = st.text_input("Email")
+      country = st.selectbox("Pays", ["France", "USA", "Canada"])
+
+def page3():
+    st.title("Page 3")
+    # ... code pour la page 3
+
 with st.sidebar:
     st.title("Sidebar")
     user_input = st.text_input("Entrez l'url")
@@ -21,22 +34,9 @@ with st.sidebar:
         st.session_state['url'] = user_input
         
     selected_page = st.radio("Sélectionnez une page", list(pages.keys()))
-    if selected_page:
-        page_key = pages[selected_page]
-        
-        # Rediriger vers la page correspondante
-        if page_key == "page1":
-            st.write("Contenu de la page 1")
-            # ... code pour la page 1
-        elif page_key == "page2":
-            st.title("Formulaire de la page 2")
-            email = st.text_input("Email")
-            country = st.selectbox("Pays", ["France", "USA", "Canada"])
-            if st.button("Soumettre"):
-                st.write(f"Email: {email}, Pays: {country}")
-        elif page_key == "page3":
-            st.write("Contenu de la page 3")
-            # ... code pour la page 3
+    
+if selected_page:
+    pages[selected_page]()
 
 # Initialize chat history
 if "messages" not in st.session_state:
