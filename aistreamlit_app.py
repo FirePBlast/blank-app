@@ -76,9 +76,13 @@ def page2():
                     df = pd.DataFrame(rows, columns=columns)
                     df['selected'] = True 
 
-                    st.data_editor(df)
-            
-                    st.session_state['selected_tables'] = [row['id_conversation'] for row in selected_rows]                           
+                    edited_df = st.data_editor(df)
+                    edited_df
+                    
+                    for row in edited_df.itertuples():
+                        if getattr(row, '_selected'):
+                               st.session_state['selected_tables'].append(getattr(row, 'id'))
+                    st.write(f'Selected IDs: {selected_ids}')    
                 else:
                     st.write(f"Erreur : {response.status_code}")
         if fine_tune_button:
