@@ -48,14 +48,14 @@ def page2():
     table_names = ["model", "metrics", "conversation"]
 
     with st.form("table_form"):
-      selected_table = st.selectbox("Sélectionnez une table", table_names)
-      submit_button = st.button("Afficher les données")
-
-if submit_button:
-    if selected_table:
-        data = get_table_data(database_path, selected_table)
-        st.write(f"Données de la table '{selected_table}':")
-        st.table(data)
+        selected_table = st.selectbox("Sélectionnez une table", table_names)
+        submit_button = st.button("Afficher les données")
+    
+        if submit_button:
+            if selected_table:
+                data = get_table_data(database_path, selected_table)
+                st.write(f"Données de la table '{selected_table}':")
+                st.table(data)
     
 def page3():
     st.title("Page 3")
