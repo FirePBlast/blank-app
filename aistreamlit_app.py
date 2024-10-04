@@ -58,7 +58,7 @@ def page2():
             if selected_table:
                 response = requests.get(request_url, params=selected_table)
                 st.write(f"Données de la table '{selected_table}':")
-                st.table(data)
+                st.table(response)
     
 def page3():
     st.title("Page 3")
