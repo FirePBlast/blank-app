@@ -23,7 +23,8 @@ if prompt := st.chat_input("What is up?"):
     data={
         "message" : prompt
     }
-    response = requests.post(url, json=data)
+    response = requests.post(url, params=data)
+    
     if response.status_code == 200:
         response_content = response.json()  # Extrayez le contenu JSON
     else:
