@@ -58,7 +58,7 @@ def page2():
         if submit_sql_button:
             if selected_table:
                 response = requests.get(request_url, params=selected_table)
-                 if response.status_code == 200:
+                if response.status_code == 200:
                     st.write(f"Données de la table '{selected_table}':")
                     data = response.json()
                     columns = data[0]
