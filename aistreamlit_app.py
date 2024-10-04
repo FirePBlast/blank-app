@@ -100,6 +100,7 @@ def page2():
                 if response_tune.status_code == 200:
                     st.success("Fine-tuning job submitted successfully!")
                 else:
+                    st.write(f'Selected IDs: {st.session_state['selected_tables']}')    
                     st.error("Error submitting fine-tuning job.")
 
     
