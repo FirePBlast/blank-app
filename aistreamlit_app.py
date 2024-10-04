@@ -70,6 +70,34 @@ def page2():
             
                     df = pd.DataFrame(rows, columns=columns)
                     st.dataframe(df)
+                    df['selected'] = True 
+
+                     gb = GridOptionsBuilder.from_dataframe(df)
+                    gb.configure_column("selected", headerCheckboxSelection = True, checkboxSelection = True)
+                    gridOptions = gb.build()
+            
+                    grid_response = AgGrid(
+                        df,
+                        gridOptions=gridOptions,
+                        update_mode=GridUpdateMode.MODEL_CHANGED,
+                        allow_unsafe_jscode=True,
+                        height=500,
+                    )
+            
+                    selected_rows = grid_response['selected_rows']
+                    selected_ids = [row['id_conversation'] for row in selected_rows]
+
+                    if st.button("Fine-tune Model"):
+                        request_url = st.session_state['url'] + "/fine_tune"
+                        if selected_ids:
+                            # Make API call to fine-tune the model with selected IDs
+                            response_tune = requests.post(request_url, json={"conversation_ids": selected_ids})
+                            
+                            if response_tune.status_code == 200:
+                                st.success("Fine-tuning job submitted successfully!")
+                            else:
+                                st.error("Error submitting fine-tuning job.")
+                    
                 else:
                     st.write(f"Erreur : {response.status_code}")
 
