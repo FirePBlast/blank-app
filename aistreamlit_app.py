@@ -72,7 +72,7 @@ def page2():
                     st.dataframe(df)
                     df['selected'] = True 
 
-                     gb = GridOptionsBuilder.from_dataframe(df)
+                    gb = GridOptionsBuilder.from_dataframe(df)
                     gb.configure_column("selected", headerCheckboxSelection = True, checkboxSelection = True)
                     gridOptions = gb.build()
             
