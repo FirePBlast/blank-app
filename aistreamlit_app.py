@@ -67,6 +67,7 @@ def page2():
             
         if submit_sql_button:
             if tb_name:
+                st.session_state['selected_tables'] = []
                 response = requests.get(request_url, params=selected_table)
                 if response.status_code == 200:
                     data = response.json()
@@ -85,7 +86,7 @@ def page2():
                 else:
                     st.write(f"Erreur : {response.status_code}")
         if fine_tune_button:
-            if selected_ids:
+            if st.session_state['selected_tables']:
                 request_url = st.session_state['url'] + "/fine_tune"
                 response_tune = requests.post(request_url, json={"conversation_ids": st.session_state['selected_tables']})
                 
