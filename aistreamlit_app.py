@@ -70,41 +70,22 @@ def page2():
                     rows = data[1]
             
                     df = pd.DataFrame(rows, columns=columns)
-                    st.dataframe(df)
                     df['selected'] = True 
 
                     st.data_editor(df)
-
-                    gb = GridOptionsBuilder.from_dataframe(df)
-                    gb.configure_column("selected", headerCheckboxSelection=True, checkboxSelection=True, hide=True)
-                    gridOptions = gb.build()
-                   
-                    gridOptions["rowSelection"] = 'multiple'
-                    gridOptions["preSelectedRows"] = [{"id_conversation": row['id_conversation']} for row in df.to_dict('records')]
             
-                    grid_response = AgGrid(
-                        df,
-                        gridOptions=gridOptions,
-                        update_mode=GridUpdateMode.MODEL_CHANGED,
-                        allow_unsafe_jscode=True,
-                        use_container_width=True,
-                    )
-            
-                    selected_rows = grid_response['selected_rows']
-                    selected_ids = [row['id_conversation'] for row in selected_rows]
-
-                    if st.form_submit_button("Fine-tune Model"):
-                        request_url = st.session_state['url'] + "/fine_tune"
-                        if selected_ids:
-                            response_tune = requests.post(request_url, json={"conversation_ids": selected_ids})
-                            
-                            if response_tune.status_code == 200:
-                                st.success("Fine-tuning job submitted successfully!")
-                            else:
-                                st.error("Error submitting fine-tuning job.")
-                    
+                    selected_ids = [row['id_conversation'] for row in selected_rows]                           
                 else:
                     st.write(f"Erreur : {response.status_code}")
+         if st.form_submit_button("Fine-tune Model"):
+            request_url = st.session_state['url'] + "/fine_tune"
+            if selected_ids:
+                response_tune = requests.post(request_url, json={"conversation_ids": selected_ids})
+                
+                if response_tune.status_code == 200:
+                    st.success("Fine-tuning job submitted successfully!")
+                else:
+                    st.error("Error submitting fine-tuning job.")
 
     
 def page3():
