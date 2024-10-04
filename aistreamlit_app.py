@@ -88,7 +88,7 @@ def page2():
         if fine_tune_button:
             if st.session_state['selected_tables']:
                 request_url = st.session_state['url'] + "/fine_tune"
-                response_tune = requests.post(request_url, json={"conversation_ids": st.session_state['selected_tables']})
+                response_tune = requests.post(request_url, json={"model_id" : 1,"conversation_ids": st.session_state['selected_tables']})
                 
                 if response_tune.status_code == 200:
                     st.success("Fine-tuning job submitted successfully!")
