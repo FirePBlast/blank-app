@@ -65,7 +65,6 @@ def page2():
             if tb_name:
                 response = requests.get(request_url, params=selected_table)
                 if response.status_code == 200:
-                    st.write(f"Données de la table '{selected_table}':")
                     data = response.json()
                     columns = data[0]
                     rows = data[1]
@@ -76,6 +75,7 @@ def page2():
 
                     gb = GridOptionsBuilder.from_dataframe(df)
                     gb.configure_column("selected", headerCheckboxSelection = True, checkboxSelection = True)
+                    gb.configure_grid_options(fit_columns_on_grid_load=True)
                     gridOptions = gb.build()
             
                     grid_response = AgGrid(
@@ -83,7 +83,6 @@ def page2():
                         gridOptions=gridOptions,
                         update_mode=GridUpdateMode.MODEL_CHANGED,
                         allow_unsafe_jscode=True,
-                        height=500,
                     )
             
                     selected_rows = grid_response['selected_rows']
