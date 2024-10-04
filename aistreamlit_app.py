@@ -52,7 +52,10 @@ def page2():
     request_url = st.session_state['url'] + "/read_table"
     
     with st.form("table_form"):
-        selected_table = st.selectbox("Sélectionnez une table", table_names)
+        tb_name = st.selectbox("Sélectionnez une table", table_names)
+        selected_table ={
+            "table_name" = tb_name
+        }
         submit_sql_button = st.form_submit_button("Afficher les données")
     
         if submit_sql_button:
