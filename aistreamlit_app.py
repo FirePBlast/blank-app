@@ -3,13 +3,16 @@ import requests
 
 st.title("Bot")
 
+if 'url' not in st.session_state:
+    st.session_state['url'] = ''
+
 with st.sidebar:
     st.title("Sidebar")
     user_input = st.text_input("Entrez l'url")
     submit_button = st.button("Valider")
 
     if submit_button:
-        url = user_input
+        st.session_state['url'] = user_input
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -32,7 +35,7 @@ if prompt := st.chat_input("What is up?"):
     data={
         "message" : prompt
     }
-    response = requests.post(url, params=data)
+    response = requests.post(st.session_state['url'], params=data)
     
     if response.status_code == 200:
         response_content = response.json()  # Extrayez le contenu JSON
