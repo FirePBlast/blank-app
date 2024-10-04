@@ -50,7 +50,7 @@ def page1():
 
 def page2():
     if 'selected_tables' not in st.session_state:
-        st.session_state['selected_tables'] = ''
+        st.session_state['selected_tables'] = []
     
     st.title("Lecture de Table")
     table_names = ["model", "metrics", "conversation"]
