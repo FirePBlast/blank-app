@@ -29,8 +29,11 @@ with st.sidebar:
             st.write("Contenu de la page 1")
             # ... code pour la page 1
         elif page_key == "page2":
-            st.write("Contenu de la page 2")
-            # ... code pour la page 2
+            st.title("Formulaire de la page 2")
+            email = st.text_input("Email")
+            country = st.selectbox("Pays", ["France", "USA", "Canada"])
+            if st.button("Soumettre"):
+                st.write(f"Email: {email}, Pays: {country}")
         elif page_key == "page3":
             st.write("Contenu de la page 3")
             # ... code pour la page 3
