@@ -6,6 +6,12 @@ st.title("Bot")
 if 'url' not in st.session_state:
     st.session_state['url'] = ''
 
+pages = {
+    "Page 1": "page1",
+    "Page 2": "page2",
+    "Page 3": "page3",
+}
+
 with st.sidebar:
     st.title("Sidebar")
     user_input = st.text_input("Entrez l'url")
@@ -13,6 +19,20 @@ with st.sidebar:
 
     if submit_button:
         st.session_state['url'] = user_input
+
+if selected_page:
+    page_key = pages[selected_page]
+    
+    # Rediriger vers la page correspondante
+    if page_key == "page1":
+        st.write("Contenu de la page 1")
+        # ... code pour la page 1
+    elif page_key == "page2":
+        st.write("Contenu de la page 2")
+        # ... code pour la page 2
+    elif page_key == "page3":
+        st.write("Contenu de la page 3")
+        # ... code pour la page 3
 
 # Initialize chat history
 if "messages" not in st.session_state:
