@@ -83,6 +83,7 @@ def page2():
                         gridOptions=gridOptions,
                         update_mode=GridUpdateMode.MODEL_CHANGED,
                         allow_unsafe_jscode=True,
+                        use_container_width=True,
                     )
             
                     selected_rows = grid_response['selected_rows']
