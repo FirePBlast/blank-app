@@ -19,7 +19,9 @@ if prompt := st.chat_input("What is up?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    response = requests.post('https://d665-34-106-239-240.ngrok-free.app/question', json=prompt)
+    url = 'https://42b8-34-168-18-253.ngrok-free.app/question'
+    
+    response = requests.post(url, params=prompt)
     # Display assistant response in chat message container
     with st.chat_message("assistant"):
         st.markdown(response)
