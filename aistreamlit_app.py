@@ -6,24 +6,23 @@ st.title("Bot")
 if 'url' not in st.session_state:
     st.session_state['url'] = ''
 
-pages = {
-    "Page 1": "page1",
-    "Page 2": "page2",
-    "Page 3": "page3",
-}
-
+# Fonctions pour chaque page
 def page1():
     st.title("Page 1")
-    # ... code pour la page 1
 
 def page2():
       st.title("Formulaire de la page 2")
       email = st.text_input("Email")
       country = st.selectbox("Pays", ["France", "USA", "Canada"])
-
+    
 def page3():
     st.title("Page 3")
-    # ... code pour la page 3
+
+pages = {
+    "Page 1": page1,  
+    "Page 2": page2,
+    "Page 3": page3,
+}
 
 with st.sidebar:
     st.title("Sidebar")
