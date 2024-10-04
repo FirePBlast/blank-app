@@ -78,10 +78,9 @@ def page2():
                     selected_ids = [row['id_conversation'] for row in selected_rows]                           
                 else:
                     st.write(f"Erreur : {response.status_code}")
-                    
-         if fine_tune_button:
-            request_url = st.session_state['url'] + "/fine_tune"
+        if fine_tune_button:
             if selected_ids:
+                request_url = st.session_state['url'] + "/fine_tune"
                 response_tune = requests.post(request_url, json={"conversation_ids": selected_ids})
                 
                 if response_tune.status_code == 200:
