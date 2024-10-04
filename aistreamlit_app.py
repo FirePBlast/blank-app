@@ -73,6 +73,8 @@ def page2():
                     st.dataframe(df)
                     df['selected'] = True 
 
+                    st.data_editor(df)
+
                     gb = GridOptionsBuilder.from_dataframe(df)
                     gb.configure_column("selected", headerCheckboxSelection=True, checkboxSelection=True, hide=True)
                     gridOptions = gb.build()
@@ -94,7 +96,6 @@ def page2():
                     if st.form_submit_button("Fine-tune Model"):
                         request_url = st.session_state['url'] + "/fine_tune"
                         if selected_ids:
-                            # Make API call to fine-tune the model with selected IDs
                             response_tune = requests.post(request_url, json={"conversation_ids": selected_ids})
                             
                             if response_tune.status_code == 200:
