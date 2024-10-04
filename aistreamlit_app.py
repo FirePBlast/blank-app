@@ -80,7 +80,7 @@ def page2():
                                         
                     for row in edited_df.itertuples():
                         if getattr(row, 'selected'):
-                               st.session_state['selected_tables'].append(getattr(row, 'id'))
+                               st.session_state['selected_tables'].append(getattr(row, 'id_conversation'))
                     st.write(f'Selected IDs: {selected_ids}')    
                 else:
                     st.write(f"Erreur : {response.status_code}")
