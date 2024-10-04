@@ -1,7 +1,15 @@
 import streamlit as st
 import requests
 
-st.title("Echo Bot")
+st.title("Bot")
+
+with st.sidebar:
+    st.title("Sidebar")
+    user_input = st.text_input("Entrez l'url")
+    submit_button = st.button("Valider")
+
+    if submit_button:
+        url = user_input
 
 # Initialize chat history
 if "messages" not in st.session_state:
@@ -19,7 +27,8 @@ if prompt := st.chat_input("What is up?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    url = 'https://42b8-34-168-18-253.ngrok-free.app/question'
+    # url = 'https://42b8-34-168-18-253.ngrok-free.app/question'
+    
     data={
         "message" : prompt
     }
