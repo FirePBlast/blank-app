@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 import requests
 
 st.title("Bot")
@@ -56,9 +57,10 @@ def page2():
     
         if submit_sql_button:
             if selected_table:
-                response = requests.get(request_url, params=selected_table)
+                columns, rows = requests.get(request_url, params=selected_table)
                 st.write(f"Données de la table '{selected_table}':")
-                st.table(response)
+                df = pd.DataFrame(rows, columns=columns)
+                st.dataframe(df)
     
 def page3():
     st.title("Page 3")
