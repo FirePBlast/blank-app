@@ -56,6 +56,7 @@ def page2():
     with st.form("table_form"):
         tb_name = st.selectbox("Sélectionnez une table", table_names)
         submit_sql_button = st.form_submit_button("Afficher les données")
+        fine_tune_button = st.form_submit_button("Fine-tune Model")
         
         selected_table = {
             "table_name" : tb_name
@@ -77,7 +78,8 @@ def page2():
                     selected_ids = [row['id_conversation'] for row in selected_rows]                           
                 else:
                     st.write(f"Erreur : {response.status_code}")
-         if st.form_submit_button("Fine-tune Model"):
+                    
+         if fine_tune_button:
             request_url = st.session_state['url'] + "/fine_tune"
             if selected_ids:
                 response_tune = requests.post(request_url, json={"conversation_ids": selected_ids})
