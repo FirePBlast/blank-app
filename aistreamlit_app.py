@@ -89,7 +89,7 @@ def page2():
                     selected_rows = grid_response['selected_rows']
                     selected_ids = [row['id_conversation'] for row in selected_rows]
 
-                    if st.button("Fine-tune Model"):
+                    if st.form_submit_button("Fine-tune Model"):
                         request_url = st.session_state['url'] + "/fine_tune"
                         if selected_ids:
                             # Make API call to fine-tune the model with selected IDs
