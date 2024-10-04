@@ -21,7 +21,7 @@ if prompt := st.chat_input("What is up?"):
 
     url = 'https://42b8-34-168-18-253.ngrok-free.app/question'
     data={
-        'message' : prompt
+        "message" : prompt
     }
     response = requests.post(url, params=data)
     # Display assistant response in chat message container
